@@ -1,5 +1,9 @@
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 const SignIn = () =>{
+    const [password, onChangePass] = useState('')
+    const [email, onChangeEmail] = useState('')
+
     return (
         <div>
             <div id="register-content" style={{
@@ -12,11 +16,11 @@ const SignIn = () =>{
                     <Form>
                         <Form.Group className="mb-3" controlId="email">
                             <Form.Label style={{color:'white'}}>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="name@example.com" />
+                            <Form.Control onChange={e => onChangeEmail(e.target.value)} type="email" placeholder="name@example.com" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="password">
                             <Form.Label  style={{color:'white'}}>password</Form.Label>
-                            <Form.Control type='password' placeholder="write your password" />
+                            <Form.Control onChange={e => onChangePass(e.target.value)} type='password' placeholder="write your password" />
                         </Form.Group>
                     </Form> 
                 
