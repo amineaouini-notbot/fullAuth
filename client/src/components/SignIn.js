@@ -6,7 +6,7 @@ const SignIn = () =>{
     const [password, onChangePass] = useState('')
     const [email, onChangeEmail] = useState('')
     const onClick = () => {
-        
+
     }
     return (
         <div>
@@ -30,6 +30,8 @@ const SignIn = () =>{
                             Sign In
                         </Button>
                     </Form> 
+
+                    <hr style={{color: 'white'}}></hr>
                 
 
                     <a href="/register">register</a>
