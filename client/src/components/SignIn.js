@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button'
 const SignIn = () =>{
     const [password, onChangePass] = useState('')
     const [email, onChangeEmail] = useState('')
-    const onClick = () => {
-
+    const onClick = (e) => {
+        e.preventDefault()
     }
     return (
         <div>
@@ -26,10 +26,10 @@ const SignIn = () =>{
                             <Form.Label  style={{color:'white'}}>password</Form.Label>
                             <Form.Control onChange={e => onChangePass(e.target.value)} type='password' placeholder="write your password" />
                         </Form.Group>
+                    </Form> 
                         <Button onclick={onClick} variant="primary" type="submit">
                             Sign In
                         </Button>
-                    </Form> 
 
                     <hr style={{color: 'white'}}></hr>
                 

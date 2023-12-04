@@ -1,15 +1,15 @@
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 import Button from 'react-bootstrap/Button'
-import user from '../services/user'
 const Register = () =>{
     const [email, onChangeEmail] = useState('')
     const [password, onChangePass] = useState('')
     const [checkPass, onChangeCheckPass] = useState('')
     
-    const onClick = () =>{
+    const onClick = (e) =>{
+        e.preventDefault()
+        console.log(email, password)
         if(checkPass === password){
-            user.register(res => console.log(res))
         }
         else{
             alert('your password is not similar to writen pass word check!!')
@@ -36,10 +36,10 @@ const Register = () =>{
                         <Form.Label  style={{color:'white'}}>check password</Form.Label>
                         <Form.Control onChange={e => onChangeCheckPass(e.target.value)} type='password' placeholder="write your pass one more time" />
                     </Form.Group> 
-                    <Button onclick={onClick} variant="primary" type="submit">
+                    </Form> 
+                    <Button onclick={e =>onClick(e)} variant="primary" type="submit">
                         Register
                     </Button>
-                    </Form> 
                     <hr style={{color: 'white'}}></hr>
             
 
