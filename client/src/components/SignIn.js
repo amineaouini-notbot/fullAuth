@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 const SignIn = () =>{
     const [password, onChangePass] = useState('')
     const [email, onChangeEmail] = useState('')
-
+    const onClick = () => {
+        
+    }
     return (
         <div>
             <div id="register-content" style={{
@@ -22,6 +26,9 @@ const SignIn = () =>{
                             <Form.Label  style={{color:'white'}}>password</Form.Label>
                             <Form.Control onChange={e => onChangePass(e.target.value)} type='password' placeholder="write your password" />
                         </Form.Group>
+                        <Button onclick={onClick} variant="primary" type="submit">
+                            Sign In
+                        </Button>
                     </Form> 
                 
 
