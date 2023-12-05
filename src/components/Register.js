@@ -13,7 +13,7 @@ const Register = () =>{
         
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
-            const {user} = userCredential;
+            
             navigate('/')
 
         })
