@@ -17,8 +17,7 @@ const SignIn = () =>{
             navigate('/')
         })
         .catch(error =>{
-            const errorCode = error.code;
-            const message = errorCode.split('/')[1].split('-').join(' ')
+            const message = error.code.split('/')[1].split('-').join(' ')
             setError(message)
         })
     }
