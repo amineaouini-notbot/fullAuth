@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 import { auth } from '../firebase'
 const Register = () =>{
     const navigate = useNavigate()
@@ -13,7 +13,7 @@ const Register = () =>{
         
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
-            
+            sendEmailVerification(userCredential.user)
             navigate('/')
 
         })
