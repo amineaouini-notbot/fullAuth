@@ -7,7 +7,6 @@ import SignIn from './components/SignIn';
 import Home from './components/Home';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
-import { redirect } from 'react-router-dom';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
