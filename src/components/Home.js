@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { signOut } from "firebase/auth";
+import { sendEmailVerification, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -8,8 +8,11 @@ const Home = ({isVerified}) =>{
     const navigate = useNavigate()
     const [waitCount, setwaitCount] = useState(null)
     const verifyEmail = () =>{
+        
         if(!waitCount){
             setwaitCount(30)
+            console.log(auth.currentUser)
+            sendEmailVerification(auth.currentUser)
         }
         
     }
