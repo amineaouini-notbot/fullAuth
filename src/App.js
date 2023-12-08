@@ -7,6 +7,7 @@ import SignIn from './components/SignIn';
 import Home from './components/home/Home';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
+import NewBlog from './components/NewBlog';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -28,6 +29,7 @@ function App() {
         <Route path='/' element={loggedIn ? (<Home isVerified={isVerified}/>) : <Navigate to='/register' replace={true}/> }/>
         <Route path='/register' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<Register/>)}/>
         <Route path='/signin' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<SignIn/>)}/>
+        <Route path='/createBlog' element={loggedIn ? (<NewBlog/>) : <Navigate to='/register' replace={true}/>}/>
       </Routes>
     </div>
   );
