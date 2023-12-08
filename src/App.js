@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Register from './components/Register';
 import SignIn from './components/SignIn';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 
