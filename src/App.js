@@ -8,12 +8,14 @@ import Home from './components/home/Home';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebase';
 import NewBlog from './components/NewBlog';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, where } from 'firebase/firestore';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(null)
   const [isVerified, setVerified] = useState(false)
   const [allBlogs, setAllBlogs] = useState([]);
+  const [myBlogs, setMyBlogs] = useState([])
+
   useEffect(()=>{
     onAuthStateChanged(auth, user => {
       if(user){
@@ -31,6 +33,13 @@ function App() {
         setAllBlogs(allBlogs)
       })
       .catch(err => console.log(err))
+    getDocs(collection(db, 'blogs'), where('user_id', '==', loggedIn))
+    .then(querySnapshot => {
+      const myBlogs = querySnapshot.docs
+      .map(doc => ({...doc.data(), id: doc.id}))
+      setMyBlogs(myBlogs)
+      console.log(myBlogs)
+    })
   })
   return (
     <div className="App">
