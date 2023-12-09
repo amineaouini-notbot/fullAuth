@@ -6,7 +6,7 @@ import { db } from '../firebase'
 import { useNavigate } from 'react-router-dom'
 import { collection, addDoc } from "firebase/firestore";
 
-const NewBlog = ({loggedIn}) => {
+const NewBlog = ({loggedIn, blogs, setBlogs}) => {
 
     const navigate = useNavigate()
     const [title, setTitle] = useState('')
@@ -18,11 +18,16 @@ const NewBlog = ({loggedIn}) => {
         
         let newBlog = {title, categorie, markDown, user_id: loggedIn}
         try{
-            const blogRef = await addDoc(collection(db, 'blogs'), newBlog)
-            console.log(blogRef)
+            // insert new blog into db
+            await addDoc(collection(db, 'blogs'), newBlog)
+
+            // after insertion add new blog to blogs state
+            let updatedBlogs = blogs
+            await updatedBlogs.push(newBlog)
+            setBlogs(updatedBlogs)
             navigate('/')
 
-        } catch(e){
+        } catch(e){ // throw error if there's any
             console.log(e)
         }
         

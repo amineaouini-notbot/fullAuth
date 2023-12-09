@@ -12,6 +12,7 @@ import NewBlog from './components/NewBlog';
 function App() {
   const [loggedIn, setLoggedIn] = useState(null)
   const [isVerified, setVerified] = useState(false)
+  const [blogs, setBlogs] = useState([]);
   useEffect(()=>{
     onAuthStateChanged(auth, user => {
       if(user){
@@ -27,10 +28,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={loggedIn ? (<Home isVerified={isVerified}/>) : <Navigate to='/register' replace={true}/> }/>
         <Route path='/register' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<Register/>)}/>
         <Route path='/signin' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<SignIn/>)}/>
-        <Route path='/createBlog' element={loggedIn ? (<NewBlog loggedIn={loggedIn}/>) : <Navigate to='/register' replace={true}/>}/>
+        <Route path='/' element={loggedIn ? (<Home blogs={blogs} isVerified={isVerified}/>) : <Navigate to='/register' replace={true}/> }/>
+        <Route path='/createBlog' element={loggedIn ? (<NewBlog blogs={blogs} setBlogs={setBlogs} loggedIn={loggedIn}/>) : <Navigate to='/register' replace={true}/>}/>
       </Routes>
     </div>
   );
