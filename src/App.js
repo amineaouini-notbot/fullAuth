@@ -10,15 +10,16 @@ import { auth } from './firebase';
 import NewBlog from './components/NewBlog';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(null)
   const [isVerified, setVerified] = useState(false)
   useEffect(()=>{
     onAuthStateChanged(auth, user => {
       if(user){
+
         if(user.emailVerified){ setVerified(true) }
-        setLoggedIn(true)
+        setLoggedIn(user.uid)
       }
-      else { setLoggedIn(false) }
+      else { setLoggedIn(null); setVerified(null) }
 
     })
   })
@@ -29,7 +30,7 @@ function App() {
         <Route path='/' element={loggedIn ? (<Home isVerified={isVerified}/>) : <Navigate to='/register' replace={true}/> }/>
         <Route path='/register' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<Register/>)}/>
         <Route path='/signin' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<SignIn/>)}/>
-        <Route path='/createBlog' element={loggedIn ? (<NewBlog/>) : <Navigate to='/register' replace={true}/>}/>
+        <Route path='/createBlog' element={loggedIn ? (<NewBlog loggedIn={loggedIn}/>) : <Navigate to='/register' replace={true}/>}/>
       </Routes>
     </div>
   );
