@@ -22,9 +22,6 @@ const NewBlog = ({loggedIn, blogs, setBlogs}) => {
             await addDoc(collection(db, 'blogs'), newBlog)
 
             // after insertion add new blog to blogs state
-            let updatedBlogs = blogs
-            await updatedBlogs.push(newBlog)
-            setBlogs(updatedBlogs)
             navigate('/')
 
         } catch(e){ // throw error if there's any
