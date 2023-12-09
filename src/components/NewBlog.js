@@ -1,16 +1,27 @@
 import { useState } from 'react'
-import {auth} from '../firebase'
 import Nav from "./Nav"
 import Form from 'react-bootstrap/Form'
 import { Button } from 'react-bootstrap'
+import { db } from '../firebase'
+import { useNavigate } from 'react-router-dom'
+import { collection, addDoc } from "firebase/firestore";
 
 const NewBlog = () => {
+    const navigate = useNavigate()
     const [title, setTitle] = useState('')
     const [categorie, setCategorie] = useState(null)
     const [markDown, setMarkDown] = useState('')
-    const createBlog = (e) => {
+    const createBlog = async(e) => {
         e.preventDefault()
-        console.log(title, categorie, markDown, 1)
+        let newBlog = {title, categorie, markDown}
+        try{
+            const blogRef = await addDoc(collection(db, 'blogs'), newBlog)
+            navigate('/')
+
+        } catch(e){
+            console.log(e)
+        }
+        
     }
     
     return (
