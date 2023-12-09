@@ -26,7 +26,7 @@ function App() {
       else { setLoggedIn(null); setVerified(null) }
 
     })
-    getDocs(collection(db, 'blogs'))
+    getDocs(collection(db, 'blogs'), where('user_id', '!=', loggedIn))
       .then(querySnapshot => {
         const allBlogs = querySnapshot.docs
         .map(doc => ({...doc.data(), id: doc.id}))
