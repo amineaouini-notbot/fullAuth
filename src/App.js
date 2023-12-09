@@ -38,15 +38,14 @@ function App() {
       const myBlogs = querySnapshot.docs
       .map(doc => ({...doc.data(), id: doc.id}))
       setMyBlogs(myBlogs)
-      console.log(myBlogs)
     })
-  })
+  }, [])
   return (
     <div className="App">
       <Routes>
         <Route path='/register' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<Register/>)}/>
         <Route path='/signin' element={loggedIn ? (<Navigate to={'/'} replace={true}/>):(<SignIn/>)}/>
-        <Route path='/' element={loggedIn ? (<Home  isVerified={isVerified}/>) : <Navigate to='/register' replace={true}/> }/>
+        <Route path='/' element={loggedIn ? (<Home myBlogs={myBlogs} isVerified={isVerified}/>) : <Navigate to='/register' replace={true}/> }/>
         <Route path='/createBlog' element={loggedIn ? (<NewBlog setAllBlogs={setAllBlogs} loggedIn={loggedIn}/>) : <Navigate to='/register' replace={true}/>}/>
       </Routes>
     </div>
