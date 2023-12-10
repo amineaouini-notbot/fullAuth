@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import './Blogs.css'
 const Blogs = (props) =>{
-    const {title} = props.blog
+    const {title, id} = props.blog
     return (
-        <Link className="myBlogs">
+        <Link to={`/blog/${id}`} className="myBlogs">
             <p style={{color: 'black', marginTop: '10px'}}>{title}</p>
         </Link>
     )
