@@ -1,9 +1,11 @@
-const Blogs = ({title, categorie, markdown}) =>{
-
+import { Link } from "react-router-dom";
+import './Blogs.css'
+const Blogs = (props) =>{
+    const {title} = props.blog
     return (
-        <div>
-            
-        </div>
+        <Link className="myBlogs">
+            <p style={{color: 'black', marginTop: '10px'}}>{title}</p>
+        </Link>
     )
 }
 
